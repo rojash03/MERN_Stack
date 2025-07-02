@@ -6,10 +6,6 @@ const app = express();
 
 const PORT = 3000;
 
-
-
-//mongodb+srv://Mern:Mern123@mern.mtspnyi.mongodb.net/?retryWrites=true&w=majority&appName=Mern
-
 app.get("/", (req, res) => {
   res.send("I am your first response from the server!");
 });
