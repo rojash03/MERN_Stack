@@ -1,11 +1,12 @@
 import express from "express";
 import connectDB from "./config/database.js";
 import userRoutes from "./routes/user.routes.js";
+import employeeRoutes from "./routes/employee.routes.js";
+import aurthRoutes from "./routes/aurth.route.js";
 
 const app = express();
 
 const PORT = 3000;
-
 
 
 //mongodb+srv://Mern:Mern123@mern.mtspnyi.mongodb.net/?retryWrites=true&w=majority&appName=Mern
@@ -19,9 +20,10 @@ app.get("/about", (req, res) => {
 });
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', userRoutes);
+app.use('/api', employeeRoutes);
+app.use('/api',aurthRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
