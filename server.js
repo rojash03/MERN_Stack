@@ -3,6 +3,8 @@ import connectDB from "./config/database.js";
 import userRoutes from "./routes/user.routes.js";
 import employeeRoutes from "./routes/employee.routes.js";
 import aurthRoutes from "./routes/aurth.route.js";
+import { profileMiddLeWare } from "./middleWare/middleware.js";
+import { verifyUser } from "./middleWare/verify.token.js";
 
 const app = express();
 
@@ -16,12 +18,19 @@ app.get("/about", (req, res) => {
   res.send("I am your second response from the server!");
 });
 
+app.get("/profile", profileMiddLeWare, (req, res) => {
+  res.send("This is the profile route");
+});
+
 app.use(express.json());
 
 app.use('/api', userRoutes);
 app.use('/api', employeeRoutes);
 app.use('/api',aurthRoutes);
 
+app.get("/check", verifyUser, (req, res) => {
+  res.status(200).json("yes you are verified");
+});
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

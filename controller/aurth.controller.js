@@ -1,5 +1,6 @@
 import { user } from "../Modles/user.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
   try {
