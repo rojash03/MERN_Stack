@@ -4,7 +4,7 @@ import userRoutes from "./routes/user.routes.js";
 import employeeRoutes from "./routes/employee.routes.js";
 import aurthRoutes from "./routes/aurth.route.js";
 import { profileMiddLeWare } from "./middleWare/middleware.js";
-import { verifyUser } from "./middleWare/verify.token.js";
+import { verifyHR, verifyUser } from "./middleWare/verify.token.js";
 
 const app = express();
 
@@ -30,6 +30,9 @@ app.use('/api',aurthRoutes);
 
 app.get("/check", verifyUser, (req, res) => {
   res.status(200).json("yes you are verified");
+});
+app.get("/checkHr", verifyHR, (req, res) => {
+  res.status(200).json("yes you are verified as HR");
 });
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

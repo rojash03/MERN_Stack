@@ -1,11 +1,17 @@
 import bcrypt from "bcryptjs";
 import { user } from "../Modles/user.js";
 
+
 export const createUser = async (req, res) => {
+
+  console.log(req.file);
+  const image =req.file.filename;
+  console.log("Image file name:", image);
+
   try {
     console.log("Request body:", req.body);
-    const { firstName, lastName, email, password } = req.body;
-    if (firstName == "" || lastName == "" || email == "" || password == "") {
+    const { firstName, lastName, email, password,role,image } = req.body;
+    if (firstName == "" || lastName == "" || email == "" || password == ""|| image == ""|| role == "") {
       return res.status(400).send("please fill all the fields");
     }
 
@@ -23,6 +29,8 @@ export const createUser = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
+      role,
+      image
     });
 
     await newUser.save();

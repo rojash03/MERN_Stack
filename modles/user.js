@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema(
             type: String,
             default: "Manager",
         },
+
+        image: {
+            type: String,
+        },
         createdAt: {
             type: Date,
             default: Date.now,
