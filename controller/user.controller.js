@@ -9,7 +9,6 @@ export const createUser = async (req, res) => {
   console.log("Image file name:", image);
 
   try {
-    console.log("Request body:", req.body);
     const { firstName, lastName, email, password,role,image } = req.body;
     if (firstName == "" || lastName == "" || email == "" || password == ""|| image == ""|| role == "") {
       return res.status(400).send("please fill all the fields");
